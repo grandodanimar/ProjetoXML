@@ -186,7 +186,7 @@ def exporta_xml(files):
     df = pd.DataFrame(dataframes)
 
     # Converter colunas numéricas
-    cols_num_float = ['BC_ICMS','BC_ICMS61','vlr_ICMS61' ,'vlr_ICMS','BC_ICMS10', 'vlr_ICMS10', 'BC_ICMS_ST','Vlr_ICMS_ST','Vlr_Produto','BC_Pis', 'Per_Pis','Vlr_Pis','BC_Cofins',
+    cols_num_float = ['BC_ICMS','BC_ICMS61','vlr_ICMS61' ,'vlr_ICMS','BC_ICMS10', 'vlr_ICMS10', 'Vlr_Produto','BC_Pis', 'Per_Pis','Vlr_Pis','BC_Cofins',
                   'Per_Cofins', 'Vlr_Cofins', 'Per_MVAST']
     df[cols_num_float]= df[cols_num_float].apply(lambda col: pd.to_numeric(col, errors='coerce').round(2))
 
