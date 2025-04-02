@@ -82,7 +82,7 @@ def exporta_xml(files):
                             pICMS = icms00.find('nfe:pICMS', ns).text if icms00.find('nfe:pICMS', ns) is not None else None
                             vICMS = icms00.find('nfe:vICMS', ns).text if icms00.find('nfe:vICMS', ns) is not None else None
 
-                    cst_icms10 = origem_prod10 = vBC_icms10 = pICMS10 = vICMS10 = vBC_icms_ST = pICMS_ST = vICMS_ST = pMVAST = None
+                    cst_icms10 = origem_prod10 = vBC_icms10 = pICMS10 = vICMS10 = vBC_icms_ST = pICMS_ST = vICMS_ST = pMVA_ST = None
 
                     if imposto is not None:
                         icms10 = imposto.find('nfe:ICMS/nfe:ICMS10', ns) if imposto is not None else None
