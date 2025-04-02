@@ -82,7 +82,7 @@ def exporta_xml(files):
                             pICMS = icms00.find('nfe:pICMS', ns).text if icms00.find('nfe:pICMS', ns) is not None else None
                             vICMS = icms00.find('nfe:vICMS', ns).text if icms00.find('nfe:vICMS', ns) is not None else None
 
-                    cst_icms10 = origem_prod10 = vBC_icms10 = pICMS10 = vICMS10 = vBC_icms_ST = pICMS_ST = vICMS_ST = pMVA_ST = None
+                    cst_icms10 = origem_prod10 = vBC_icms10 = pICMS10 = vICMS10 = pMVA_ST = None
 
                     if imposto is not None:
                         icms10 = imposto.find('nfe:ICMS/nfe:ICMS10', ns) if imposto is not None else None
@@ -166,9 +166,6 @@ def exporta_xml(files):
                         'Per_ICMS10': pICMS10,
                         'vlr_ICMS10': vICMS10,
                         'Per_MVAST': pMVA_ST,
-                        'BC_ICMS_ST': vBC_icms_ST,
-                        'Per_ICMS_ST': pICMS_ST,
-                        'Vlr_ICMS_ST': vICMS_ST,
                         'Orig_Prod61': origem_prod61,
                         'BC_ICMS61': vBC_icms61,
                         'Per_ICMS61': pICMS61,
@@ -193,7 +190,7 @@ def exporta_xml(files):
                   'Per_Cofins', 'Vlr_Cofins', 'Per_MVAST']
     df[cols_num_float]= df[cols_num_float].apply(lambda col: pd.to_numeric(col, errors='coerce').round(2))
 
-    cols_int = ['Per_ICMS','Per_ICMS10','Per_ICMS_ST']
+    cols_int = ['Per_ICMS','Per_ICMS10']
     df[cols_int] = df[cols_int].apply(pd.to_numeric, errors='coerce', downcast='integer')
 
     # Converter coluna de data
