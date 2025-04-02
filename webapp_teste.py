@@ -95,7 +95,7 @@ def exporta_xml(files):
                             vICMS = icms10.find('nfe:vICMS', ns).text if icms10.find('nfe:vICMS', ns) is not None else None
                             pICMS10 = icms10.find('nfe:pICMSST', ns).text if icms10.find('nfe:pICMSST', ns) is not None else None
                             vICMS10 = icms10.find('nfe:vICMSST', ns).text if icms10.find('nfe:vICMSST', ns) is not None else None
-                            pMVAST = icms10.find('nfe:pMVAST', ns).text if icms10.find('nfe:pMVAST', ns) is not None else None
+                            pMVA_ST = icms10.find('nfe:pMVAST', ns).text if icms10.find('nfe:pMVAST', ns) is not None else None
 
                     origem_prod61 = cst_icms61 = vBC_icms61 = pICMS61 = vICMS61 = None
 
@@ -165,7 +165,7 @@ def exporta_xml(files):
                         'BC_ICMS10': vBC_icms10,
                         'Per_ICMS10': pICMS10,
                         'vlr_ICMS10': vICMS10,
-                        'Per_MVAST': pMVAST,
+                        'Per_MVAST': pMVA_ST,
                         'BC_ICMS_ST': vBC_icms_ST,
                         'Per_ICMS_ST': pICMS_ST,
                         'Vlr_ICMS_ST': vICMS_ST,
@@ -216,7 +216,7 @@ def exporta_xml(files):
     df['BC_Cofins_Calc'] = df['Vlr_Produto'] - df['VLR_ICMS']
     df['VLR_Cofins_Calc'] = df['BC_Cofins_Calc'] * 0.076
 
-    # Converte as notas colunas
+    # Converte as novas colunas
     cols_pis_cofins = ['BC_PIS_Calc', 'VLR_PIS_Calc', 'BC_Cofins_Calc', 'VLR_Cofins_Calc']
     df[cols_pis_cofins] = df[cols_pis_cofins].apply(lambda col: pd.to_numeric(col, errors='coerce').round(2))
 
