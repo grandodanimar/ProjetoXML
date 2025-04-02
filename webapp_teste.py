@@ -95,7 +95,7 @@ def exporta_xml(files):
                             vICMS = icms10.find('nfe:vICMS', ns).text if icms10.find('nfe:vICMS', ns) is not None else None
                             pICMS10 = icms10.find('nfe:pICMSST', ns).text if icms10.find('nfe:pICMSST', ns) is not None else None
                             vICMS10 = icms10.find('nfe:vICMSST', ns).text if icms10.find('nfe:vICMSST', ns) is not None else None
-                            pMVAST = icms10.find('nfe:pMVAST', ns).text if icms10 is not None else None
+                            pMVAST = icms10.find('nfe:pMVAST', ns).text if icms10.find('nfe:pMVAST', ns) is not None else None
 
 
                     origem_prod61 = cst_icms61 = vBC_icms61 = pICMS61 = vICMS61 = None
