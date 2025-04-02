@@ -87,9 +87,9 @@ def exporta_xml(files):
                     if imposto is not None:
                         icms10 = imposto.find('nfe:ICMS/nfe:ICMS10', ns) if imposto is not None else None
                         if icms10 is not None:
-                            origem_prod10 = icms10.find('nfe:orig', ns).text if icms10 is not None else None
-                            cst_icms10 = icms10.find('nfe:CST', ns).text if icms10 is not None else None
-                            vBC_icms10 = icms10.find('nfe:vBCST', ns).text if icms10 is not None else None
+                            origem_prod10 = icms10.find('nfe:orig', ns).text if icms10.find('nfe:orig',ns) is not None else None
+                            cst_icms10 = icms10.find('nfe:CST', ns).text if icms10.find('nfe:CST', ns) is not None else None
+                            vBC_icms10 = icms10.find('nfe:vBCST', ns).text if icms10.find('nfe:vBCST', ns) is not None else None
                             vBC_icms = icms10.find('nfe:vBC', ns).text if icms10.find('nfe:vBC', ns) is not None else None
                             pICMS = icms10.find('nfe:pICMS', ns).text if icms10.find('nfe:pICMS', ns) is not None else None
                             vICMS = icms10.find('nfe:vICMS', ns).text if icms10.find('nfe:vICMS', ns) is not None else None
