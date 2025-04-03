@@ -62,11 +62,14 @@ def exporta_xml(files):
             for det in root.findall('.//nfe:det', ns):
                 produtos = det.find('nfe:prod', ns)
                 if produtos is not None:
+                    codProd = produtos.find('nfe:cProd', ns).text if produtos.find('nfe:cProd', ns) is not None else None
                     cod_ean = produtos.find('nfe:cEAN', ns).text if produtos.find('nfe:cEAN', ns) is not None else None
                     nome_produto = produtos.find('nfe:xProd', ns).text if produtos.find('nfe:xProd', ns) is not None else None
                     ncm = produtos.find('nfe:NCM', ns).text if produtos.find('nfe:NCM', ns) is not None else None
                     cest = produtos.find('nfe:CEST', ns).text if produtos.find('nfe:CEST', ns) is not None else None
                     cfop = produtos.find('nfe:CFOP', ns).text if produtos.find('nfe:CFOP', ns) is not None else None
+                    qtdeTrib = produtos.find('nfe:qTrib', ns).text if produtos.find('nfe:qTrib', ns) is not None else None
+                    vlrUnit = produtos.find('nfe:vUnTrib', ns).text if produtos.find('nfe:vUnTrib', ns) is not None else None
                     vprod = produtos.find('nfe:vProd', ns).text if produtos.find('nfe:vProd', ns) is not None else None
                     vdesc = produtos.find('nfe:vDesc', ns).text if produtos.find('nfe:vDesc', ns) is not None else None
 
@@ -157,6 +160,9 @@ def exporta_xml(files):
                         'CEST': cest,
                         'Origem_Produto': origem_prod,
                         'CST_ICMS': cst_icms,
+                        'Cod_Prod': codProd,
+                        'Qtde_Trib':qtdeTrib,
+                        'Vlr_Unit': vlrUnit,
                         'Vlr_Produto': vprod,
                         'BC_ICMS': vBC_icms,
                         'Per_ICMS': pICMS,
@@ -188,7 +194,7 @@ def exporta_xml(files):
 
     # Converter colunas numéricas
     cols_num_float = ['BC_ICMS','BC_ICMS61','vlr_ICMS61' ,'vlr_ICMS','BC_ICMS10', 'vlr_ICMS10', 'Vlr_Produto','BC_Pis', 'Per_Pis','Vlr_Pis','BC_Cofins',
-                  'Per_Cofins', 'Vlr_Cofins', 'Per_MVAST']
+                  'Per_Cofins', 'Vlr_Cofins', 'Per_MVAST','Vlr_Unit', 'Qtde_Trib']
     df[cols_num_float]= df[cols_num_float].apply(lambda col: pd.to_numeric(col, errors='coerce').round(2))
 
     cols_int = ['Per_ICMS','Per_ICMS10']
