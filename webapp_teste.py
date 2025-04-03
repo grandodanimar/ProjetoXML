@@ -75,15 +75,15 @@ def exporta_xml(files):
 
                     # Capturar os dados dos impostos (ICMS e PIS)
                     imposto = det.find('nfe:imposto', ns)
-                    cst_icms = origem_prod = vBC_icms = pICMS = vICMS = None
+                    cst_icms = origem_prod = vBC_icms_prop = pICMS_prop = vICMS_prop = None
                     if imposto is not None:
                         icms00 = imposto.find('nfe:ICMS/nfe:ICMS00', ns)
                         if icms00 is not None:
                             origem_prod = icms00.find('nfe:orig', ns).text if icms00.find('nfe:orig', ns) is not None else None
                             cst_icms = icms00.find('nfe:CST', ns).text if icms00.find('nfe:CST', ns) is not None else None
-                            vBC_icms = icms00.find('nfe:vBC', ns).text if icms00.find('nfe:vBC', ns) is not None else None
-                            pICMS = icms00.find('nfe:pICMS', ns).text if icms00.find('nfe:pICMS', ns) is not None else None
-                            vICMS = icms00.find('nfe:vICMS', ns).text if icms00.find('nfe:vICMS', ns) is not None else None
+                            vBC_icms_prop = icms00.find('nfe:vBC', ns).text if icms00.find('nfe:vBC', ns) is not None else None
+                            pICMS_prop = icms00.find('nfe:pICMS', ns).text if icms00.find('nfe:pICMS', ns) is not None else None
+                            vICMS_prop = icms00.find('nfe:vICMS', ns).text if icms00.find('nfe:vICMS', ns) is not None else None
 
                     cst_icms10 = origem_prod10 = pICMS = vICMS = vBC_icms10 = pICMS10 = vICMS10 = pMVA_ST = None
 
@@ -164,9 +164,9 @@ def exporta_xml(files):
                         'Qtde_Trib':qtdeTrib,
                         'Vlr_Unit': vlrUnit,
                         'Vlr_Produto': vprod,
-                        'BC_ICMS': vBC_icms,
-                        'Per_ICMS': pICMS,
-                        'vlr_ICMS': vICMS,
+                        'BC_ICMS': vBC_icms_prop,
+                        'Per_ICMS': pICMS_prop,
+                        'vlr_ICMS': vICMS_prop,
                         'Orig_Prod10': origem_prod10,
                         'CST_ICMS10': cst_icms10,
                         'BC_ICMS10': vBC_icms10,
