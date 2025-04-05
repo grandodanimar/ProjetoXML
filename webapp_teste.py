@@ -194,7 +194,7 @@ def exporta_xml(files):
     df = pd.DataFrame(dataframes)
 
     # Converter colunas numéricas
-    cols_num_float = ['BC_ICMS','BC_ICMS61','vlr_ICMS61' ,'vlr_ICMS','BC_ICMS10', 'vlr_ICMS10', 'Vlr_Produto','BC_Pis', 'Per_Pis','Vlr_Pis','BC_Cofins',
+    cols_num_float = ['BC_ICMS','BC_ICMS61','vlr_ICMS61' , 'Per_ICMS61','vlr_ICMS','BC_ICMS10', 'vlr_ICMS10', 'Vlr_Produto','BC_Pis', 'Per_Pis','Vlr_Pis','BC_Cofins',
                   'Per_Cofins', 'Vlr_Cofins', 'Per_MVAST','Vlr_Unit', 'Qtde_Trib', 'Vlr_Desconto']
     df[cols_num_float]= df[cols_num_float].apply(lambda col: pd.to_numeric(col, errors='coerce').round(2))
 
@@ -212,7 +212,8 @@ def exporta_xml(files):
 
     # Inserindo novas colunas para Base de cálculo do ICMS e Valor do ICMS, concatenando as colunas com ICMS61 e ICMS
     df['BC_ICMS'] = df['BC_ICMS'] + df['BC_ICMS61']
-    df['VLR_ICMS'] = df['vlr_ICMS'] + df['vlr_ICMS61']
+    df['Per_ICMS'] = df['Per_ICMS'] + df['Per_ICMS61']
+    df['vlr_ICMS'] = df['vlr_ICMS'] + df['vlr_ICMS61']
 
     # Calcular um valor na coluna BC_Pis e Vlr_Pis subtraindo o valor da coluna VLR_ICMS da coluna bc_icms
     df['BC_PIS_Calc'] = df['Vlr_Produto'] - df['VLR_ICMS']
