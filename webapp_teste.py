@@ -216,10 +216,10 @@ def exporta_xml(files):
     df['vlr_ICMS'] = df['vlr_ICMS'] + df['vlr_ICMS61']
 
     # Calcular um valor na coluna BC_Pis e Vlr_Pis subtraindo o valor da coluna VLR_ICMS da coluna bc_icms
-    df['BC_PIS_Calc'] = df['Vlr_Produto'] - df['VLR_ICMS']
+    df['BC_PIS_Calc'] = df['Vlr_Produto'] - df['vlr_ICMS']
     df['VLR_PIS_Calc'] = df['BC_PIS_Calc'] * 0.0165
 
-    df['BC_Cofins_Calc'] = df['Vlr_Produto'] - df['VLR_ICMS']
+    df['BC_Cofins_Calc'] = df['Vlr_Produto'] - df['vlr_ICMS']
     df['VLR_Cofins_Calc'] = df['BC_Cofins_Calc'] * 0.076
 
     # Converte as novas colunas
