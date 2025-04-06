@@ -211,7 +211,7 @@ def exporta_xml(files):
     df = df.fillna(0)
 
     # Inserindo novas colunas para Base de cálculo do ICMS e Valor do ICMS, concatenando as colunas com ICMS61 e ICMS
-    df['BC_ICMS'] = df['BC_ICMS'] + df['BC_ICMS61']
+    df['BC_ICMS'] = np.where(df['BC_ICMS'] ==0, df['BC_ICMS'] + df['BC_ICMS61'], df['BC_ICMS'])
     df['Per_ICMS'] = df['Per_ICMS'] + df['Per_ICMS61']
     df['vlr_ICMS'] = df['vlr_ICMS'] + df['vlr_ICMS61']
 
