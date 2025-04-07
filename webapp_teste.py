@@ -113,7 +113,7 @@ def exporta_xml(files):
                             pICMS61 = icms61.find('nfe:adRemICMSRet', ns).text if icms61 is not None else None
                             vICMS61 = icms61.find('nfe:vICMSMonoRet', ns).text if icms61 is not None else None
 
-                    origem_prod51 = cst_icms51 = vBC_icms51 = pICMS51 = per_Dif = vICMSop = vICMSdif None
+                    origem_prod51 = cst_icms51 = vBC_icms51 = pICMS51 = per_Dif = vICMSop = vICMSdif =None
 
                     if imposto is not None:
                         icms51 = imposto.find('nfe:ICMS/nfe:ICMS51', ns) if imposto is not None else None
