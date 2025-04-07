@@ -122,7 +122,7 @@ def exporta_xml(files):
                             cst_icms51 = icms51.find('nfe:CST', ns).text if icms51 is not None else None
                             vBC_icms51 = icms51.find('nfe:vBC', ns).text if icms51 is not None else None
                             pICMS51 = icms51.find('nfe:pICMS', ns).text if icms51 is not None else None
-                            per_Dif = icms51 = icms51.find('nfe:pDif', ns).text if icms51 is not None else None
+                            per_Dif = icms51.find('nfe:pDif', ns).text if icms51 is not None else None
                             vICMSop = icms51.find('nfe:vICMSOp', ns).text if icms51 is not None else None
                             vICMSdif = icms51.find('nfe:vICMSDif', ns).text if icms51 is not None else None
                             
