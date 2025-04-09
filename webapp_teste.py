@@ -195,7 +195,7 @@ def exporta_xml(files):
                         'Per_Dif': per_Dif,
                         'Vlr_ICMS_Op': vICMSop,
                         'Vlr_ICMS_Dif': vICMSdif,
-                        'Vlr_ICMS51': vICMSop - vICMSdif,
+                        'Vlr_ICMS51': vICMSdif,
                         'Orig_Prod61': origem_prod61,
                         'BC_ICMS61': vBC_icms61,
                         'Per_ICMS61': pICMS61,
