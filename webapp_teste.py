@@ -77,6 +77,7 @@ def exporta_xml(files):
                     # Capturar os dados dos impostos (ICMS e PIS)
                     imposto = det.find('nfe:imposto', ns)
                     cst_icms = origem_prod = vBC_icms_prop = pICMS_prop = vICMS_prop = None
+                    cst_icms20 = origem_prod20 = per_redBC = vBC_icms20 = pICMS20 = vICMS20 = None
                     if imposto is not None:
                         icms00 = imposto.find('nfe:ICMS/nfe:ICMS00', ns)
                         if icms00 is not None:
@@ -85,7 +86,15 @@ def exporta_xml(files):
                             vBC_icms_prop = icms00.find('nfe:vBC', ns).text if icms00.find('nfe:vBC', ns) is not None else None
                             pICMS_prop = icms00.find('nfe:pICMS', ns).text if icms00.find('nfe:pICMS', ns) is not None else None
                             vICMS_prop = icms00.find('nfe:vICMS', ns).text if icms00.find('nfe:vICMS', ns) is not None else None
-
+                        icms20 = imposto.find('nfe:ICMS/nfe:ICMS20', ns)
+                        if icms20 is not None:
+                            origem_prod20 = icms20.find('nfe:orig', ns).text if icms20.find('nfe:orig', ns) is not None else None
+                            cst_icms20 = icms20.find('nfe:CST', ns).text if icms20.find('nfe:CST', ns) is not None else None
+                            per_redBC = icms20.find('nfe:pRedBC', ns).text if icms20.find('nfe:pRedBC', ns) is not None else None
+                            vBC_icms20 = icms20.find('nfe:vBC', ns).text if icms20.find('nfe:vBC', ns) is not None else None
+                            pICMS20 = icms20.find('nfe:pICMS', ns).text if icms20.find('nfe:pICMS', ns) is not None else None
+                            vICMS20 = icms20.find('nfe:vICMS', ns).text if icms20.find('nfe:vICMS', ns) is not None else None
+    
                     cst_icms10 = origem_prod10 = pICMS = vICMS = vBC_icms10 = pICMS10 = vICMS10 = pMVA_ST = None
 
                     if imposto is not None:
@@ -100,6 +109,7 @@ def exporta_xml(files):
                             pICMS10 = icms10.find('nfe:pICMSST', ns).text if icms10.find('nfe:pICMSST', ns) is not None else None
                             vICMS10 = icms10.find('nfe:vICMSST', ns).text if icms10.find('nfe:vICMSST', ns) is not None else None
                             pMVA_ST = icms10.find('nfe:pMVAST', ns).text if icms10.find('nfe:pMVAST', ns) is not None else None
+                            
 
 
                     origem_prod61 = cst_icms61 = vBC_icms61 = pICMS61 = vICMS61 = None
@@ -183,6 +193,12 @@ def exporta_xml(files):
                         'BC_ICMS': vBC_icms_prop,
                         'Per_ICMS': pICMS_prop,
                         'vlr_ICMS': vICMS_prop,
+                        'CST_ICMS20': cst_icms20,
+                        'Orig_Prod20': origem_prod20,
+                        'Per_RedBC': per_redBC,
+                        'BC_ICMS20': vBC_icms20,
+                        'Per_ICMS20': pICMS20,
+                        'Vlr_ICMS20': vICMS20,
                         'Orig_Prod10': origem_prod10,
                         'CST_ICMS10': cst_icms10,
                         'BC_ICMS10': vBC_icms10,
@@ -217,7 +233,8 @@ def exporta_xml(files):
 
     # Converter colunas numéricas
     cols_num_float = ['BC_ICMS','BC_ICMS61','vlr_ICMS61' , 'Per_ICMS61','vlr_ICMS','BC_ICMS10', 'vlr_ICMS10', 'Vlr_Produto','BC_Pis', 'Per_Pis','Vlr_Pis','BC_Cofins',
-                  'Per_Cofins', 'Vlr_Cofins', 'Per_MVAST','Vlr_Unit', 'Qtde_Trib', 'Vlr_Desconto', 'BC_ICMS51', 'Per_ICMS51', 'Per_Dif', 'Vlr_ICMS_Op', 'Vlr_ICMS_Dif', 'Vlr_ICMS51']
+                  'Per_Cofins', 'Vlr_Cofins', 'Per_MVAST','Vlr_Unit', 'Qtde_Trib', 'Vlr_Desconto', 'BC_ICMS51', 'Per_ICMS51', 'Per_Dif', 'Vlr_ICMS_Op', 'Vlr_ICMS_Dif', 'Vlr_ICMS51',
+                     'Per_RedBC', 'BC_ICMS20', 'Per_ICMS20', 'Vlr_ICMS20']
     df[cols_num_float]= df[cols_num_float].apply(lambda col: pd.to_numeric(col, errors='coerce').round(2))
 
     cols_int = ['Per_ICMS','Per_ICMS10']
@@ -233,9 +250,9 @@ def exporta_xml(files):
     df = df.fillna(0)
 
     # Inserindo novas colunas para Base de cálculo do ICMS e Valor do ICMS, concatenando as colunas com ICMS61 e ICMS
-    df['BC_ICMS'] = np.where(df['BC_ICMS'] ==0, df['BC_ICMS'] + df['BC_ICMS61'] + df['BC_ICMS51'], df['BC_ICMS'])
-    df['Per_ICMS'] = df['Per_ICMS'] + df['Per_ICMS61'] + df['Per_ICMS51']
-    df['vlr_ICMS'] = df['vlr_ICMS'] + df['vlr_ICMS61'] + df['Vlr_ICMS51']
+    df['BC_ICMS'] = np.where(df['BC_ICMS'] ==0, df['BC_ICMS'] + df['BC_ICMS61'] + df['BC_ICMS51'] +df['BC_ICMS20'], df['BC_ICMS'])
+    df['Per_ICMS'] = df['Per_ICMS'] + df['Per_ICMS61'] + df['Per_ICMS51'] + df['Per_ICMS20']
+    df['vlr_ICMS'] = df['vlr_ICMS'] + df['vlr_ICMS61'] + df['Vlr_ICMS51'] + df['Vlr_ICMS20']
 
     # Calcular um valor na coluna BC_Pis e Vlr_Pis subtraindo o valor da coluna VLR_ICMS da coluna bc_icms
     df['BC_PIS_Calc'] = df['Vlr_Produto'] - df['vlr_ICMS'] - df['Vlr_Desconto']
