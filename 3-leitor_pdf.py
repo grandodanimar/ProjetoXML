@@ -98,12 +98,12 @@ st.markdown("Atenção os arquivos de autorização de uso devem estar no format
 st.image("autorizacao_uso.png")
 
 if uploaded_files:
-    df = carrega_pdf(uploaded_files)
+    df2 = carrega_pdf(uploaded_files)
     
     # Salvar o DataFrame na sessão para uso posterior
-    st.session_state.df = df
-    st.dataframe(df.dropna(), hide_index=True)
-    conta_docs = df['Chave_Acesso'].nunique()
+    st.session_state.df2 = df2
+    st.dataframe(df2.dropna(), hide_index=True)
+    conta_docs = df2['Chave_Acesso'].nunique()
     
     col1 = st.columns(1)[0]
     col1.metric("Total de Documentos Carregados", conta_docs)
