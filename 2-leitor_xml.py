@@ -309,7 +309,7 @@ if "df" in st.session_state and st.session_state.df is not None:
     # Exibir DataFrame com colunas selecionadas
     if colunas_selecionadas:
         st.write("### Dados do XML convertidos para DataFrame:")
-        st.dataframe(df[colunas_selecionadas])
+        st.dataframe(df[colunas_selecionadas], hide_index=True)
     else:
         st.warning("Selecione pelo menos uma coluna para exibição.")
 
