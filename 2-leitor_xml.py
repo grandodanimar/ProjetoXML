@@ -242,7 +242,7 @@ def exporta_xml(files):
                      'Per_RedBC', 'BC_ICMS20', 'Per_ICMS20', 'Vlr_ICMS20', 'Per_ICMS_ST', 'BC_ICMS_ST', 'Vlr_ICMS_ST']
     df[cols_num_float]= df[cols_num_float].apply(lambda col: pd.to_numeric(col, errors='coerce').round(2))
 
-    cols_int = ['Per_ICMS','Per_ICMS10']
+    cols_int = ['Per_ICMS','Per_ICMS10', 'Numero_NF']
     df[cols_int] = df[cols_int].apply(pd.to_numeric, errors='coerce', downcast='integer')
 
     # Converter coluna de data
