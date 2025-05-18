@@ -308,7 +308,7 @@ if "df" in st.session_state and st.session_state.df is not None:
 
     # Exibir DataFrame com colunas selecionadas
     if colunas_selecionadas:
-        st.write("###Dados do XML convertidos para Tabela:")
+        st.write("### Dados do XML convertidos para Tabela:")
         st.write("Observações: **As colunas com final _calc no nome, são colunas calculadas, ou seja, não trazem informações diretas do xml**")
         st.dataframe(df[colunas_selecionadas], hide_index=True)
     else:
