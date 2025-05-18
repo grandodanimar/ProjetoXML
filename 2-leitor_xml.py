@@ -310,8 +310,10 @@ if "df" in st.session_state and st.session_state.df is not None:
     if colunas_selecionadas:
         st.markdown(
             """
+            <div>
             <h1>Dados do XML convertidos para Tabela:</h1>
-            """
+            </div>
+            """,
         )
         st.dataframe(df[colunas_selecionadas], hide_index=True)
     else:
