@@ -74,6 +74,7 @@ def exporta_xml(files):
                     vlrUnit = produtos.find('nfe:vUnTrib', ns).text if produtos.find('nfe:vUnTrib', ns) is not None else None
                     vprod = produtos.find('nfe:vProd', ns).text if produtos.find('nfe:vProd', ns) is not None else None
                     vdesc = produtos.find('nfe:vDesc', ns).text if produtos.find('nfe:vDesc', ns) is not None else None
+                    cbenef = produtos.find('nfe:cBenef', ns).text if produtos.find('nfe:cBenef',ns) is not None else None
                     gcred = produtos.find('nfe:gCred', ns)
                     cCredPresumido=pCredPresumido=vCredPresumido=None
                     if gcred is not None:
@@ -183,6 +184,7 @@ def exporta_xml(files):
                         'NCM': ncm,
                         'CFOP': cfop,
                         'CEST': cest,
+                        'cBenef': cbenef,
                         'cCredPresumido': cCredPresumido,
                         'pCredPresumido': pCredPresumido,
                         'vCredPresumido': vCredPresumido,
