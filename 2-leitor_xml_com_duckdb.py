@@ -66,7 +66,7 @@ def exporta_xml(files):
                 Vlr_ICMS_ST FLOAT, 
                 BC_FCPST FLOAT,
                 Per_FCPST,
-                Vlr_FCPSC,
+                Vlr_FCPST,
                 Orig_Prod51 INTEGER, 
                 CST_ICMS51 INTEGER, 
                 BC_ICMS51 FLOAT, 
