@@ -425,7 +425,21 @@ if "df" in st.session_state and st.session_state.df is not None:
             """)
         tab3.data_editor(duckdb.sql(
                         """
-                        SELECT Numero_NF, Nome_Produto, NCM,BC_ICMS, Per_ICMS, vlr_ICMS, BC_ICMS61, Per_ICMS61, vlr_ICMS61, Vlr_Desconto,BC_PIS_Calc, VLR_PIS_Calc, BC_Cofins_Calc, VLR_Cofins_Calc
+                        SELECT Numero_NF, 
+                               Nome_Produto, 
+                               NCM,BC_ICMS, 
+                               Per_ICMS, 
+                               vlr_ICMS, 
+                               BC_ICMS61, 
+                               Per_ICMS61, 
+                               vlr_ICMS61,
+                               Vlr_Produto,
+                               Vlr_Desconto,
+                               Vlr_Produto - Vlr_Desconto AS Vlr_Liquido,
+                               BC_PIS_Calc, 
+                               VLR_PIS_Calc, 
+                               BC_Cofins_Calc, 
+                               VLR_Cofins_Calc
                         FROM df
                         """).df(), hide_index=True, num_rows="dynamic")
         tab3.write(duckdb.sql("SELECT Nome_Produto, NCM FROM df").df())
