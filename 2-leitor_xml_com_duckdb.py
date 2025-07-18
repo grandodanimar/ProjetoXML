@@ -355,7 +355,7 @@ if uploaded_files:
 if "df" in st.session_state and st.session_state.df is not None:
     df = st.session_state.df
 
-    tab1, tab2, tab3 tab4 = st.tabs(["Tabela Completa", "Consulta por MVA", "Relatório PisCofins", "Relatório Analítico Pis/Cofins"])
+    tab1, tab2, tab3, tab4 = st.tabs(["Tabela Completa", "Consulta por MVA", "Relatório PisCofins", "Relatório Analítico Pis/Cofins"])
 
     with tab1:
         
