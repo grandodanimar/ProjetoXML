@@ -442,7 +442,7 @@ if "df" in st.session_state and st.session_state.df is not None:
                                VLR_Cofins_Calc
                         FROM df
                         """).df(), hide_index=True)
-        tab3.write(duckdb.sql("SELECT Nome_Produto, NCM FROM df").df())
+        # tab3.write(duckdb.sql("SELECT Nome_Produto, NCM FROM df").df())
 
 
     
