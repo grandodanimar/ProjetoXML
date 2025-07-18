@@ -416,7 +416,7 @@ if "df" in st.session_state and st.session_state.df is not None:
         consulta_mva = df[['CNPJ_Destinatário','Numero_NF','Nome_Produto','NCM', 'CFOP', 'CEST', 'Origem_Produto', 'CST_ICMS', 'Vlr_Produto',
            'BC_ICMS', 'Per_ICMS', 'vlr_ICMS', 'Orig_Prod10', 'CST_ICMS10',
            'BC_ICMS10', 'Per_ICMS10', 'Vlr_ICMS10', 'Per_MVAST', 'BC_ICMS_ST', 'Per_ICMS_ST',
-           'Vlr_ICMS_ST', 'Orig_Prod61', 'BC_ICMS61', 'Per_ICMS61', 'vlr_ICMS61']]
+           'Vlr_ICMS_ST', 'BC_FCPST', 'Per_FCPST','Vlr_FCPST','Orig_Prod61', 'BC_ICMS61', 'Per_ICMS61', 'vlr_ICMS61']]
         tab2.write(consulta_mva[consulta_mva['CNPJ_Destinatário'].isin(['83299743001294']) & (consulta_mva['Per_MVAST'] > 0)].drop(['CNPJ_Destinatário'], axis=1)\
         .groupby(by=['Nome_Produto','CEST','Per_ICMS','Per_ICMS_ST','Per_MVAST'])[['Vlr_Produto','BC_ICMS', 'vlr_ICMS', 'BC_ICMS10','Vlr_ICMS10', 'BC_ICMS_ST', 'Vlr_ICMS_ST']].sum())
 
