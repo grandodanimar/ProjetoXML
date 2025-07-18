@@ -355,7 +355,7 @@ if uploaded_files:
 if "df" in st.session_state and st.session_state.df is not None:
     df = st.session_state.df
 
-    tab1, tab2, tab3 = st.tabs(["Tabela Completa", "Consulta por MVA", "Relatório PisCofins"])
+    tab1, tab2, tab3 tab4 = st.tabs(["Tabela Completa", "Consulta por MVA", "Relatório PisCofins", "Relatório Analítico Pis/Cofins"])
 
     with tab1:
         
@@ -443,6 +443,27 @@ if "df" in st.session_state and st.session_state.df is not None:
                         FROM df
                         """).df(), hide_index=True)
         # tab3.write(duckdb.sql("SELECT Nome_Produto, NCM FROM df").df())
+        with tab4:
+        tab4.html(
+            """
+            <div style="text-align": center;">
+                    <h3>Relatório de Pis/Cofins Analítico</h3>
+            </div>
+            """
+            )
+        tab4.data_editor(duckdb.sql(
+                        """
+                        SELECT Numero_NF,
+                               Nome_Produto,
+                               CST_PIS,
+                               CST_PIS_NT,
+                               NCM,
+                               Vlr_Produto + Vlr_IPI + Vlr_ICMS_ST AS Vlr_Contabil,
+                               vlr_ICMS,
+                               BC_PIS_Calc,
+                               BC_Cofins_Calc
+                        FROM df
 
+                        """).df(), hide_index=True)
 
     
