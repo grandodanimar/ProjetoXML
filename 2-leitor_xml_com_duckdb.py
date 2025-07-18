@@ -290,7 +290,7 @@ def exporta_xml(files):
                     (nat_op,chave_acesso,numero_nota, data_emissao, cnpj_emitente,cpf_emitente,emitente_nome,uf_emitente,cnpj_destinatario,destinatario_nome,
                     uf_destinatario, cod_ean,nome_produto,ncm,cfop,cest,cbenef,cCredPresumido,pCredPresumido,vCredPresumido,origem_prod,cst_icms,codProd,
                     qtdeTrib,vlrUnit,vprod,vdesc,vBC_icms_prop,pICMS_prop,vICMS_prop,cst_icms20,origem_prod20,per_redBC,vBC_icms20,pICMS20,vICMS20,origem_prod10,
-                    cst_icms10,vBC_icms10,pICMS10,vICMS10, pMVA_ST,vBC_icms_st,pICMS_st,vICMS_st, vBC_FCPST ,pFCPST,vFCPST,origem_prod51,cst_icms51,vBC_icms51,pICMS51,per_Dif, vICMSop,
+                    cst_icms10,vBC_icms10,pICMS10,vICMS10, pMVA_ST,vBC_icms_st,pICMS_st,vICMS_st, vBC_FCPST,pFCPST, vFCPST,origem_prod51,cst_icms51,vBC_icms51,pICMS51,per_Dif, vICMSop,
                     vICMSdif,vICMS51,origem_prod61,vBC_icms61,pICMS61,vICMS61, orig_prod90, cst_icms90,cst_ipi, cst_ipi_nt,vBC_IPI,pIPI,vIPI, cst_pis,vBC_pis,pPIS,vPIS,cst_cofins,vBC_cofins,pCOFINS,vCOFINS,cst_pis_nt,cst_cofins_nt)
                     )
 
@@ -300,7 +300,7 @@ def exporta_xml(files):
     # Converter colunas numéricas
     cols_num_float = ['BC_ICMS','BC_ICMS61','vlr_ICMS61' , 'Per_ICMS61','vlr_ICMS','BC_ICMS10', 'Vlr_ICMS10', 'Vlr_Produto','BC_Pis', 'Per_Pis','Vlr_Pis','BC_Cofins',
                   'Per_Cofins', 'Vlr_Cofins', 'Per_MVAST','Vlr_Unit', 'Qtde_Trib', 'Vlr_Desconto', 'BC_ICMS51', 'Per_ICMS51', 'Per_Dif', 'Vlr_ICMS_Op', 'Vlr_ICMS_Dif','Vlr_ICMS51', 
-                     'Per_RedBC', 'BC_ICMS20', 'Per_ICMS20', 'Vlr_ICMS20', 'Per_ICMS_ST', 'BC_ICMS_ST', 'Vlr_ICMS_ST','BC_FCPST', 'Per_FCPST','Vlr_FCPSC','vCredPresumido', 'pCredPresumido']
+                     'Per_RedBC', 'BC_ICMS20', 'Per_ICMS20', 'Vlr_ICMS20', 'Per_ICMS_ST', 'BC_ICMS_ST', 'Vlr_ICMS_ST','BC_FCPST', 'Per_FCPST','Vlr_FCPST','vCredPresumido', 'pCredPresumido']
     df[cols_num_float]= df[cols_num_float].apply(lambda col: pd.to_numeric(col, errors='coerce').round(2))
 
     cols_int = ['Per_ICMS','Per_ICMS10']
