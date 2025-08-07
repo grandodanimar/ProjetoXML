@@ -7,6 +7,10 @@ names = st.secrets["NAMES"]
 usernames = st.secrets["USERNAMES"]
 passwords = st.secrets["PASSWORDS"]
 
+passwords = st.secrets["PASSWORDS"]
+st.write("Tipo de PASSWORDS:", type(passwords))
+
+
 hashed_passwords = stauth.Hasher(passwords).generate()
 
 authenticator = stauth.Authenticate(
@@ -34,6 +38,7 @@ elif auth_status is False:
 
 else:
     st.warning("Digite suas credenciais para acessar")
+
 
 
 
