@@ -1,29 +1,32 @@
 import streamlit as st
 import streamlit_authenticator as stauth
 
-try:
-    names = st.secrets["NAMES"]
-    usernames = st.secrets["USERNAMES"]
-    passwords = st.secrets["PASSWORDS"]
+names = st.secrets.get("NAMES", [])
+usernames = st.secrets.get("USERNAMES", [])
+passwords = st.secrets.get("PASSWORDS", [])
 
-    if not isinstance(passwords, list):
-        st.error("As senhas devem estar em uma lista. Corrija o secrets.toml.")
-    else:
-        hashed_passwords = stauth.Hasher(passwords).generate()
+# Verificações básicas
+if not isinstance(passwords, list):
+    st.error("As senhas devem estar em formato de lista. Corrija seu secrets.toml")
+    st.stop()
 
-        authenticator = stauth.Authenticate(
-            names, usernames, hashed_passwords,
-            "meu_app", "cookie_key", cookie_expiry_days=1
-        )
+# Geração de hash
+hashed_passwords = stauth.Hasher(passwords).generate()
 
-        name, auth_status, username = authenticator.login("Login", "main")
+# Autenticador
+authenticator = stauth.Authenticate(
+    names,
+    usernames,
+    hashed_passwords,
+    "meu_app", "cookie_key", cookie_expiry_days=1
+)
 
-        if auth_status:
-            st.success(f"Bem-vindo {name}!")
-        elif auth_status is False:
-            st.error("Usuário ou senha incorretos.")
-        else:
-            st.warning("Digite suas credenciais para acessar.")
+name, auth_status, username = authenticator.login("Login", "main")
 
-except Exception as e:
-    st.error(f"Erro na autenticação: {e}")
+if auth_status:
+    st.success(f"Bem-vindo {name}!")
+    # Aqui vai seu app
+elif auth_status is False:
+    st.error("Usuário ou senha incorretos.")
+else:
+    st.warning("Digite suas credenciais para acessar.")
