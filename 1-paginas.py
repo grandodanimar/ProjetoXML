@@ -1,36 +1,41 @@
 import streamlit as st
 import streamlit_authenticator as stauth
+import importlib
 
-# Carregar usuários do secrets
+# Configurar login
 names = st.secrets["NAMES"]
 usernames = st.secrets["USERNAMES"]
 passwords = st.secrets["PASSWORDS"]
 
-# Criptografar senhas
 hashed_passwords = stauth.Hasher(passwords).generate()
 
-# Criar o autenticador
 authenticator = stauth.Authenticate(
     names, usernames, hashed_passwords,
-    'meu_app', 'chave_cookie_segura', cookie_expiry_days=1
+    "meu_app", "cookie_key", cookie_expiry_days=1
 )
 
-# Exibir login
-name, auth_status, username = authenticator.login('Login', 'main')
+name, auth_status, username = authenticator.login("Login", "main")
 
+# Verifica status de autenticação
 if auth_status:
-    st.success(f'Bem-vindo {name}')
-    # Aqui entra o resto do seu app
+    st.sidebar.success(f"Bem-vindo, {name}")
+    
+    # Aqui você define e exibe as páginas
+    st.sidebar.title("Navegação")
+    pagina = st.sidebar.radio("Escolha a página", ["Leitor XML", "Outra funcionalidade"])
+
+    if pagina == "Leitor XML":
+        # Importa funcionalidades da ferramenta
+        leitor = importlib.import_module("2-leitor_xml.py")
+        leitor.exibir()  # Assumindo que você tem uma função chamada exibir() no outro arquivo
+
 elif auth_status is False:
-    st.error('Usuário ou senha incorretos')
+    st.error("Usuário ou senha incorretos")
+
 else:
-    st.warning('Digite suas credenciais para acessar o app')
+    st.warning("Digite suas credenciais para acessar")
 
 
-pagina_1 = st.Page("2-leitor_xml_com_duckdb.py", title="Converter Arquivos XML para Tabela")
-pagina_2 = st.Page("3-leitor_pdf.py", title="Conferência Autorizações de Uso NFe")
-pg = st.navigation([pagina_1, pagina_2])
-pg.run()
 
 
 
