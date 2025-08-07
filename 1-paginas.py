@@ -1,32 +1,19 @@
 import streamlit as st
-import streamlit_authenticator as stauth
+paginas = {
+	"Ferramentas":[
+		
+		st.Page("2-leitor_xml.py", title="Converter Arquivos XML para Tabela"),
+		st.Page("3-leitor_pdf.py", title="Lendo Arquivos PDF"),
+		],
+}
 
-names = st.secrets.get("NAMES", [])
-usernames = st.secrets.get("USERNAMES", [])
-passwords = st.secrets.get("PASSWORDS", [])
+pg = st.navigation(paginas)
+with st.sidebar.expander("**Dúvidas e Sugestões**"):
+    st.write('''
+        Envie sugestões ou tire dúvidas no email abaixo:
 
-# Verificações básicas
-if not isinstance(passwords, list):
-    st.error("As senhas devem estar em formato de lista. Corrija seu secrets.toml")
-    st.stop()
+        danimar.grando@outlook.com
+        
+    ''')
+pg.run()
 
-# Geração de hash
-hashed_passwords = stauth.Hasher(passwords).generate()
-
-# Autenticador
-authenticator = stauth.Authenticate(
-    names,
-    usernames,
-    hashed_passwords,
-    "meu_app", "cookie_key", cookie_expiry_days=1
-)
-
-name, auth_status, username = authenticator.login("Login", "main")
-
-if auth_status:
-    st.success(f"Bem-vindo {name}!")
-    # Aqui vai seu app
-elif auth_status is False:
-    st.error("Usuário ou senha incorretos.")
-else:
-    st.warning("Digite suas credenciais para acessar.")
