@@ -3,6 +3,7 @@ pandas
 xlsxwriter
 PyPDF2
 duckdb
-streamlit_authenticator>=0.2.2
+streamlit-authenticator>=0.2.2
+
 
 
