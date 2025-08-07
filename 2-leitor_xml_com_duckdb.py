@@ -413,12 +413,24 @@ if "df" in st.session_state and st.session_state.df is not None:
             )
 
     with tab2:
-        consulta_mva = df[['CNPJ_Destinatário','Numero_NF','Nome_Produto','NCM', 'CFOP', 'CEST', 'Origem_Produto', 'CST_ICMS', 'Vlr_Produto',
-           'BC_ICMS', 'Per_ICMS', 'vlr_ICMS', 'Orig_Prod10', 'CST_ICMS10',
-           'BC_ICMS10', 'Per_ICMS10', 'Vlr_ICMS10', 'Per_MVAST', 'BC_ICMS_ST', 'Per_ICMS_ST',
-           'Vlr_ICMS_ST', 'BC_FCPST', 'Per_FCPST','Vlr_FCPST','Orig_Prod61', 'BC_ICMS61', 'Per_ICMS61', 'vlr_ICMS61']]
-        tab2.write(consulta_mva[consulta_mva['CNPJ_Destinatário'].isin(['83299743001294']) & (consulta_mva['Per_MVAST'] > 0)].drop(['CNPJ_Destinatário'], axis=1)\
-        .groupby(by=['Nome_Produto','CEST','Per_ICMS','Per_ICMS_ST','Per_MVAST'])[['Vlr_Produto','BC_ICMS', 'vlr_ICMS', 'BC_ICMS10','Vlr_ICMS10', 'BC_ICMS_ST', 'Vlr_ICMS_ST']].sum())
+        tab2.data_editor(duckdb.sql(
+                        """
+                        SELECT 
+                            Numero_NF,
+                            Data_Emissao,
+                            ROUND(SUM(Vlr_Produto + Vlr_ICMS_ST + Vlr_FCPST),2) AS Vlr_Contabil,
+                            ROUND(SUM(BC_ICMS),2) AS BC_ICMS,
+                            Per_ICMS,
+                            ROUND(SUM(Vlr_ICMS),2) AS Vlr_ICMS,
+                            ROUND(SUM(BC_ICMS_ST),2) AS BC_ICMSST,
+                            ROUND(SUM(Vlr_ICMS_ST),2) AS Vlr_ICMS_ST,
+                            ROUND(SUM(Vlr_FCPST),2) AS Vlr_FCPST,
+                            Per_IPI,
+                            ROUND(SUM(Vlr_IPI),2) AS Vlr_IPI
+                        FROM df
+                        GROUP BY Numero_NF, Data_Emissao,Per_ICMS, Per_IPI
+                        ORDER BY Numero_NF
+                        """).df(), hide_index=True)
 
     with tab3:
         tab3.html(
@@ -471,3 +483,4 @@ if "df" in st.session_state and st.session_state.df is not None:
                             """).df(), hide_index=True)
 
     
+
