@@ -4,7 +4,7 @@ import streamlit as st
 paginas = {
 	"Ferramentas":[
 		#st.Page("autenticacao.py", title="Login"),
-		st.Page("2-leitor_xml.py", title="Converter Arquivos XML para Tabela"),
+		st.Page("2-leitor_xml_com_duckdb.py", title="Converter Arquivos XML para Tabela"),
 		st.Page("3-leitor_pdf.py", title="Lendo Arquivos PDF"),
 		],
 }
@@ -18,6 +18,7 @@ with st.sidebar.expander("**Dúvidas e Sugestões**"):
         
     ''')
 pg.run()
+
 
 
 
