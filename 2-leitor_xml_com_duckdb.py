@@ -382,7 +382,7 @@ if "df" in st.session_state and st.session_state.df is not None:
             # Aqui vamos apresentar métricas com somas, contagens e outros cálculos dos dados carregados.
             col1, col2 = st.columns(2)
             col3, col4 = st.columns(2)
-            col1.metric("Total BC ICMS", df['BC_ICMS'].sum().round(2), border=True)
+            col1.metric("Total BC ICMS", df['BC_ICMS'].sum().round(3), border=True)
             col2.metric("Total Vlr ICMS", df['vlr_ICMS'].sum().round(2), border=True)
             col3.metric("Total BC Pis", df['BC_PIS_Calc'].sum().round(2), border=True)
             col4.metric("Total BC Cofins", df['BC_Cofins_Calc'].sum().round(2), border=True)
@@ -485,6 +485,7 @@ if "df" in st.session_state and st.session_state.df is not None:
                             """).df(), hide_index=True)
 
     
+
 
 
 
