@@ -474,6 +474,7 @@ if "df" in st.session_state and st.session_state.df is not None:
                                    CST_PIS,
                                    CST_PIS_NT,
                                    NCM,
+                                   BC_ICMS,
                                    Vlr_Produto + Vlr_IPI + Vlr_ICMS_ST AS Vlr_Contabil,
                                    vlr_ICMS,
                                    BC_PIS_Calc,
@@ -483,5 +484,6 @@ if "df" in st.session_state and st.session_state.df is not None:
                             """).df(), hide_index=True)
 
     
+
 
 
