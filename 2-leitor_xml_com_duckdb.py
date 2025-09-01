@@ -342,7 +342,7 @@ st.title("")
 st.markdown(
     """
     <div style="text-align": center;">
-        <h1>Ferramenta de Leitura e Exportação de arquivos xml</h1>
+        <h1>Ferramenta de Leitura e Importação de arquivos xml</h1>
     </div>
     """,
     unsafe_allow_html=True,
@@ -485,6 +485,7 @@ if "df" in st.session_state and st.session_state.df is not None:
                             """).df(), hide_index=True)
 
     
+
 
 
 
