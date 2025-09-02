@@ -431,7 +431,7 @@ if "df" in st.session_state and st.session_state.df is not None:
                         FROM df
                         GROUP BY Numero_NF, Data_Emissao,Per_ICMS, Per_IPI
                         ORDER BY Numero_NF
-                        """).df(), hide_index=True, width=600)
+                        """).df(), hide_index=True, width=1200)
 
     with tab3:
         tab3.html(
@@ -485,6 +485,7 @@ if "df" in st.session_state and st.session_state.df is not None:
                             """).df(), hide_index=True)
 
     
+
 
 
 
