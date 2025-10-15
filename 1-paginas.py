@@ -1,10 +1,9 @@
 import streamlit as st
 
 st.set_page_config(
-	page_title:"Conversor XML"
+	page_title:"Conversor XML",
     layout="wide",
-	page_icon=":memo:",
-	
+	page_icon=":memo:"
 )
 paginas = {
 	"Ferramentas":[
@@ -23,6 +22,7 @@ with st.sidebar.expander("**Dúvidas e Sugestões**"):
         
     ''')
 pg.run()
+
 
 
 
