@@ -1,5 +1,9 @@
 import streamlit as st
-
+st.set_page_config(
+	page_title="Conversor XML",
+    layout="wide",
+	page_icon=":memo:"
+)
 
 paginas = {
 	
@@ -9,11 +13,7 @@ paginas = {
 		st.Page("3-leitor_pdf.py", title="Lendo Arquivos PDF"),
 		],
 }
-st.set_page_config(
-	page_title:"Conversor XML",
-    layout="wide",
-	page_icon=":memo:"
-)
+
 pg = st.navigation(paginas)
 with st.sidebar.expander("**Dúvidas e Sugestões**"):
     st.write('''
@@ -23,6 +23,7 @@ with st.sidebar.expander("**Dúvidas e Sugestões**"):
         
     ''')
 pg.run()
+
 
 
 
