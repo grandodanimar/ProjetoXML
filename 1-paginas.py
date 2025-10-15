@@ -1,11 +1,12 @@
 import streamlit as st
 
-st.set_page_config(
+
+paginas = {
+	st.set_page_config(
 	page_title:"Conversor XML",
     layout="wide",
 	page_icon=":memo:"
 )
-paginas = {
 	"Ferramentas":[
 		#st.Page("autenticacao.py", title="Login"),
 		st.Page("2-leitor_xml_com_duckdb.py", title="Converter Arquivos XML para Tabela"),
@@ -22,6 +23,7 @@ with st.sidebar.expander("**Dúvidas e Sugestões**"):
         
     ''')
 pg.run()
+
 
 
 
