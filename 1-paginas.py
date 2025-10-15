@@ -1,6 +1,8 @@
 import streamlit as st
 
-
+st.set_page_config(
+    layout="wide"
+)
 paginas = {
 	"Ferramentas":[
 		#st.Page("autenticacao.py", title="Login"),
@@ -18,6 +20,7 @@ with st.sidebar.expander("**Dúvidas e Sugestões**"):
         
     ''')
 pg.run()
+
 
 
 
