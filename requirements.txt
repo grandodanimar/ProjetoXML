@@ -1,9 +1,12 @@
 streamlit
+os
+io
 pandas
 xlsxwriter
 PyPDF2
 duckdb
 streamlit-authenticator>=0.2.2
+
 
 
 
