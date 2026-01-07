@@ -36,7 +36,8 @@ def combina_pdfs(uploaded_files):
 			)
 		
 if __name__ == "__main__":
-    combina_pdfs()
+    main()
+
 
 
 
