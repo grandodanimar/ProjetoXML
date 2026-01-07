@@ -21,21 +21,22 @@ def combina_pdfs(uploaded_files):
 
 	return output
 
-if uploaded_files:
-	if st.button("🔗 Combinar PDFs"):
-		pdf_final = combina_pdfs(uploaded_files)
-
-		st.success("PDFs combinados com sucesso!")
-
-
-		st.download_button(
-			label="⬇️ Baixar PDF combinado",
-			data=pdf_final,
-			file_name="arquivos_combinados",
-			mime="application/pdf"
-		)
+	if uploaded_files:
+		if st.button("🔗 Combinar PDFs"):
+			pdf_final = combina_pdfs(uploaded_files)
+	
+			st.success("PDFs combinados com sucesso!")
+	
+	
+			st.download_button(
+				label="⬇️ Baixar PDF combinado",
+				data=pdf_final,
+				file_name="arquivos_combinados",
+				mime="application/pdf"
+			)
 		
 if __name__ == "__main__":
     combina_pdfs()
+
 
 
