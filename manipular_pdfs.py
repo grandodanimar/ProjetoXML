@@ -1,42 +1,40 @@
 import streamlit as st
-import os
 from PyPDF2 import PdfMerger
-from io import BytesIO
+import io
 
-uploaded_files = st.file_uploader("Carregue aqui a pasta com seus arquivos pdf", type="pdf", accept_multiple_files=True, width=500)
+def main():
+    st.title("Manipular PDFs")
 
-# Função para combinar os pdfs
+    uploaded_files = st.file_uploader(
+        "Selecione os PDFs",
+        type="pdf",
+        accept_multiple_files=True
+    )
 
-def main(uploaded_files):
+    if uploaded_files:
+        merger = PdfMerger()
 
-	merger = PdfMerger()
-	output = BytesIO()
+        for pdf in uploaded_files:
+            merger.append(pdf)
 
-	for pdf in uploaded_files:
-		merger.append(pdf)
+        buffer = io.BytesIO()
+        merger.write(buffer)
+        merger.close()
+        buffer.seek(0)
 
-	merger.write('merged-pdf.pdf')
-	merger.close()
-	output.seek(0)
+        st.success("PDFs combinados com sucesso!")
 
-	return output
+        st.download_button(
+            label="📥 Baixar PDF combinado",
+            data=buffer,
+            file_name="pdf_combinado.pdf",
+            mime="application/pdf"
+        )
 
-	if uploaded_files:
-		if st.button("🔗 Combinar PDFs"):
-			pdf_final = main(uploaded_files)
-	
-			st.success("PDFs combinados com sucesso!")
-	
-	
-			st.download_button(
-				label="⬇️ Baixar PDF combinado",
-				data=pdf_final,
-				file_name="arquivos_combinados",
-				mime="application/pdf"
-			)
-		
+# 🔴 ISSO É OBRIGATÓRIO
 if __name__ == "__main__":
     main()
+
 
 
 
