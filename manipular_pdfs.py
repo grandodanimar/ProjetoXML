@@ -34,4 +34,7 @@ if uploaded_files:
 			file_name="arquivos_combinados",
 			mime="application/pdf"
 		)
+		
+if __name__ == "__main__":
+    main()
 
