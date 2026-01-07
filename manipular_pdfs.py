@@ -7,7 +7,7 @@ uploaded_files = st.file_uploader("Carregue aqui a pasta com seus arquivos pdf",
 
 # Função para combinar os pdfs
 
-def combina_pdfs(uploaded_files):
+def main(uploaded_files):
 
 	merger = PdfMerger()
 	output = BytesIO()
@@ -23,7 +23,7 @@ def combina_pdfs(uploaded_files):
 
 	if uploaded_files:
 		if st.button("🔗 Combinar PDFs"):
-			pdf_final = combina_pdfs(uploaded_files)
+			pdf_final = main(uploaded_files)
 	
 			st.success("PDFs combinados com sucesso!")
 	
@@ -36,7 +36,8 @@ def combina_pdfs(uploaded_files):
 			)
 		
 if __name__ == "__main__":
-    combina_pdfs()
+    main()
+
 
 
 
