@@ -220,19 +220,24 @@ def exporta_xml(files):
                             pICMS61 = icms61.find('nfe:adRemICMSRet', ns).text if icms61 is not None else None
                             vICMS61 = icms61.find('nfe:vICMSMonoRet', ns).text if icms61 is not None else None
 
+                    def get_text(parent, tag, ns):
+                         if parent is None:
+                             return None
+                         el = parent.find(tag, ns)
+                         return el.text if el is not None else None
                     origem_prod51 = cst_icms51 = vBC_icms51 = pICMS51 = per_Dif = vICMSop = vICMSdif = vICMS51=None
-
+    
                     if imposto is not None:
                         icms51 = imposto.find('nfe:ICMS/nfe:ICMS51', ns) if imposto is not None else None
                         if icms51 is not None:
-                            origem_prod51 = icms51.find('nfe:orig', ns).text if icms51 is not None else None
-                            cst_icms51 = icms51.find('nfe:CST', ns).text if icms51 is not None else None
-                            vBC_icms51 = icms51.find('nfe:vBC', ns).text if icms51 is not None else None
-                            pICMS51 = icms51.find('nfe:pICMS', ns).text if icms51 is not None else None
-                            per_Dif = icms51.find('nfe:pDif', ns).text if icms51 is not None else None
-                            vICMSop = icms51.find('nfe:vICMSOp', ns).text if icms51 is not None else None
-                            vICMSdif = icms51.find('nfe:vICMSDif', ns).text if icms51 is not None else None
-                            vICMS51 = icms51.find('nfe:vICMS', ns).text if icms51 is not None else None
+                            origem_prod51 = get_text(icms51, 'nfe:orig', ns)
+                            cst_icms51 = get_text(icms51,'nfe:CST', ns)
+                            vBC_icms51 = get_text(icms51,'nfe:vBC', ns)
+                            pICMS51 = get_text(icms51,'nfe:pICMS', ns)
+                            per_Dif = get_text(icms51,'nfe:pDif', ns)
+                            vICMSop = get_text(icms51,'nfe:vICMSOp', ns)
+                            vICMSdif = get_text(icms51,'nfe:vICMSDif', ns)
+                            vICMS51 = get_text(icms51,'nfe:vICMS', ns)
                     orig_prod90 = cst_icms90 = None
                     if imposto is not None:
                         icms90 = imposto.find('nfe:ICMS/nfe:ICMS90', ns) if imposto is not None else None
@@ -485,6 +490,7 @@ if "df" in st.session_state and st.session_state.df is not None:
                             """).df(), hide_index=True)
 
     
+
 
 
 
