@@ -18,7 +18,7 @@ st.set_page_config(
 ns_nfe = {'nfe': 'http://www.portalfiscal.inf.br/nfe'}
 ns_cte = {'cte': 'http://www.portalfiscal.inf.br/cte'}
 
-@st.cache_data
+@st.cache_resource(scope='session')
 def get_connection():
     """Cria e mantém a conexão com o DuckDB em memória."""
     con = duckdb.connect(database=':memory:')
