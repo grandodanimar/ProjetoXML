@@ -10,6 +10,7 @@ paginas = {
 	"Ferramentas":[
 		#st.Page("autenticacao.py", title="Login"),
 		st.Page("leitor_xml_unificado_premium.py", title="Converter Arquivos XML para Tabela"),
+		st.Page("2-leitor_xml_com_duckdb.py", title="Converter Arquivos XML para Tabela(Antigo)"),
 		st.Page("3-leitor_pdf.py", title="Lendo Arquivos PDF"),
 		st.Page("manipular_pdfs.py", title="Meu PDF")
 		],
@@ -24,6 +25,7 @@ with st.sidebar.expander("**Dúvidas e Sugestões**"):
         
     ''')
 pg.run()
+
 
 
 
